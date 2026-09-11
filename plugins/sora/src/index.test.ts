@@ -1,8 +1,89 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 import { plugin } from "./index";
 
-describe("Example Plugin", () => {
-  test("Exports plugin object", () => {
-    expect(plugin).toBeTypeOf("object");
+describe("Sora theme", () => {
+  it("should register the Sora theme", () => {
+    expect(plugin.themes).toHaveLength(1);
+
+    const theme = plugin.themes[0];
+
+    expect(theme.id).toBe("sora");
+    expect(theme.label).toBe("Sora");
+    expect(theme.dark).toBe(true);
+  });
+
+  it("should have the correct base colors", () => {
+    const theme = plugin.themes[0];
+
+    expect(theme.base).toEqual({
+      surface: "#0e1018",
+      surfaceHighlight: "#171a24",
+      surfaceActive: "#283448",
+      selection: "#1e2430",
+      text: "#c8d0e0",
+      textSubtle: "#9aa4b8",
+      textSubtlest: "#586478",
+      border: "#364050",
+      borderSubtle: "#222838",
+      borderFocus: "#80c8e0",
+      primary: "#80c8e0",
+      secondary: "#b0a0d8",
+      info: "#5ca8c8",
+      success: "#68a888",
+      notice: "#d0a888",
+      warning: "#c8a860",
+      danger: "#c46c78",
+    });
+  });
+
+  it("should have the correct component colors", () => {
+    const theme = plugin.themes[0];
+
+    expect(theme.components).toEqual({
+      appHeader: {
+        surface: "#0a0c12",
+        border: "#222838",
+      },
+      sidebar: {
+        surface: "#0a0c12",
+        border: "#222838",
+      },
+      responsePane: {
+        surface: "#0e1018",
+        border: "#364050",
+      },
+      editor: {
+        surface: "#0e1018",
+      },
+      dialog: {
+        surface: "#14161e",
+        border: "#364050",
+      },
+      menu: {
+        surface: "#14161e",
+        border: "#364050",
+      },
+      toast: {
+        surface: "#14161e",
+        border: "#364050",
+      },
+      input: {
+        surface: "#14161e",
+        border: "#364050",
+      },
+      urlBar: {
+        surface: "#14161e",
+        border: "#364050",
+      },
+      button: {
+        primary: "#80c8e0",
+        secondary: "#b0a0d8",
+        info: "#5ca8c8",
+        success: "#68a888",
+        notice: "#d0a888",
+        warning: "#c8a860",
+        danger: "#c46c78",
+      },
+    });
   });
 });
