@@ -1,11 +1,23 @@
 import { describe, expect, it } from "vitest";
 import { plugin } from "./index";
 
+function getTheme() {
+  const themes = plugin.themes;
+
+  if (!themes || themes.length !== 1) {
+    throw new Error("Sora theme should have exactly one registered theme");
+  }
+
+  return themes[0];
+}
+
 describe("Sora theme", () => {
   it("should register the Sora theme", () => {
-    expect(plugin.themes).toHaveLength(1);
+    const theme = getTheme();
 
-    const theme = plugin.themes[0];
+    if (!theme) {
+      throw new Error("Sora theme should have exactly one registered theme");
+    }
 
     expect(theme.id).toBe("sora");
     expect(theme.label).toBe("Sora");
@@ -13,7 +25,11 @@ describe("Sora theme", () => {
   });
 
   it("should have the correct base colors", () => {
-    const theme = plugin.themes[0];
+    const theme = getTheme();
+
+    if (!theme) {
+      throw new Error("Sora theme should have exactly one registered theme");
+    }
 
     expect(theme.base).toEqual({
       surface: "#0e1018",
@@ -37,7 +53,11 @@ describe("Sora theme", () => {
   });
 
   it("should have the correct component colors", () => {
-    const theme = plugin.themes[0];
+    const theme = getTheme();
+
+    if (!theme) {
+      throw new Error("Sora theme should have exactly one registered theme");
+    }
 
     expect(theme.components).toEqual({
       appHeader: {
